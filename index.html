@@ -39,6 +39,11 @@
   </div>
 </section>
 
+<section class="banner-ad">
+  <span class="ad-label">Advertisement</span>
+  <a href="#menu"><img src="./pumpkin_spice_banner_ad.jpg" alt="Pumpkin Spice Latte — Order Now"></a>
+</section>
+
 <section class="menu" id="menu">
   <div class="section-heading">
     <div><p class="kicker">OUR MENU</p><h2>Signature Brews <span>✦</span></h2></div>
@@ -87,6 +92,15 @@
     </form>
   </div>
 </div>
+<div class="music-player" id="musicPlayer">
+  <button class="mp-toggle" id="mpToggle" aria-label="Play music">▶</button>
+  <div class="mp-info">
+    <span class="mp-title">Café Vibes</span>
+    <div class="mp-bar"><div class="mp-progress" id="mpProgress"></div></div>
+  </div>
+  <button class="mp-mute" id="mpMute" aria-label="Mute">🔊</button>
+  <audio id="mpAudio" src="./cafe_music.mp3" loop preload="none"></audio>
+</div>
 <script>
 const FB='https://www.facebook.com/share/g/19chqtrvrD/?mibextid=wwXIfr';
 const modal=document.getElementById('modal'), form=document.getElementById('authForm'), nameLabel=document.getElementById('nameLabel');
@@ -100,5 +114,22 @@ form.onsubmit=e=>{e.preventDefault();if(!form.checkValidity()){document.getEleme
 document.querySelectorAll('.coffee-card button').forEach(b=>b.onclick=()=>openAuth('register'));
 document.getElementById('hamburger').onclick=()=>document.getElementById('nav').classList.toggle('open');
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeAuth()});
+
+const mpAudio=document.getElementById('mpAudio'),mpToggle=document.getElementById('mpToggle'),mpMute=document.getElementById('mpMute'),mpProgress=document.getElementById('mpProgress');
+let playing=false,muted=false;
+mpToggle.onclick=()=>{
+  if(playing){mpAudio.pause();mpToggle.textContent='▶';mpToggle.setAttribute('aria-label','Play music')}
+  else{mpAudio.play().catch(()=>{});mpToggle.textContent='❚❚';mpToggle.setAttribute('aria-label','Pause music')}
+  playing=!playing;
+};
+mpMute.onclick=()=>{
+  muted=!muted;
+  mpAudio.muted=muted;
+  mpMute.textContent=muted?'🔇':'🔊';
+  mpMute.setAttribute('aria-label',muted?'Unmute':'Mute');
+};
+mpAudio.addEventListener('timeupdate',()=>{
+  if(mpAudio.duration)mpProgress.style.width=(mpAudio.currentTime/mpAudio.duration*100)+'%';
+});
 </script>
 </body></html>
