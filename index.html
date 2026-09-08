@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brew Haven — More Than Just Coffee</title>
+<link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+<header class="header">
+  <a class="logo" href="#home"><img src="./brew_haven_logo_uploaded.png" alt="Brew Haven"></a>
+  <nav id="nav">
+    <a class="active" href="#home">Home</a>
+    <a href="#menu">Menu</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <button class="login-top" id="openLogin">◉ &nbsp; Login / Register</button>
+  <button class="hamburger" id="hamburger">☰</button>
+</header>
+
+<main id="home">
+<section class="hero">
+  <div class="leaf-accent left">❧</div>
+  <div class="hero-copy">
+    <p class="kicker">GOOD COFFEE. WARMER DAYS.</p>
+    <h1>More Than Just<br><em>Coffee</em></h1>
+    <p class="intro">At Brew Haven, every cup is a moment of comfort. Sip, relax, and find your perfect brew — rain or shine.</p>
+    <a href="#menu" class="primary-btn">Explore Our Menu <span>→</span></a>
+    <div class="mini-values">
+      <div><b>☕</b><span>Premium<br>Coffee</span></div>
+      <div><b>♧</b><span>Fresh<br>Ingredients</span></div>
+      <div><b>♡</b><span>Good Vibes<br>Always</span></div>
+    </div>
+  </div>
+  <div class="hero-photo">
+    <img src="./hero_coffee.jpg" alt="Warm coffee served with a pumpkin">
+    <div class="photo-note">Cozy moments,<br>one cup at a time.</div>
+  </div>
+</section>
+
+<section class="menu" id="menu">
+  <div class="section-heading">
+    <div><p class="kicker">OUR MENU</p><h2>Signature Brews <span>✦</span></h2></div>
+    <a href="#menu">View All →</a>
+  </div>
+  <div class="coffee-grid">
+    <article class="coffee-card featured"><img src="./pumpkin_spice_latte.jpg" alt="Pumpkin Spice Latte"><div class="card-body"><h3>Pumpkin Spice Latte</h3><p>Spiced, cozy, and perfect for the season.</p><button data-drink="Pumpkin Spice Latte">Order This →</button></div></article>
+    <article class="coffee-card"><img src="./classic_latte.jpg" alt="Classic Latte"><div class="card-body"><h3>Classic Latte</h3><p>Smooth espresso with steamed milk.</p><button data-drink="Classic Latte">Order This →</button></div></article>
+    <article class="coffee-card"><img src="./cappuccino.jpg" alt="Cappuccino"><div class="card-body"><h3>Cappuccino</h3><p>A perfect balance of espresso, milk, and foam.</p><button data-drink="Cappuccino">Order This →</button></div></article>
+    <article class="coffee-card"><img src="./americano.jpg" alt="Americano"><div class="card-body"><h3>Americano</h3><p>Bold, smooth, and naturally refreshing.</p><button data-drink="Americano">Order This →</button></div></article>
+    <article class="coffee-card"><img src="./mocha.jpg" alt="Mocha"><div class="card-body"><h3>Mocha</h3><p>Rich chocolate meets espresso.</p><button data-drink="Mocha">Order This →</button></div></article>
+    <article class="coffee-card"><img src="./cold_brew.jpg" alt="Cold Brew"><div class="card-body"><h3>Cold Brew</h3><p>Chilled, bold, and always fresh.</p><button data-drink="Cold Brew">Order This →</button></div></article>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="about-art"><div class="coffee-bean">◉</div><div class="line-art">☕</div></div>
+  <div><p class="kicker">ABOUT BREW HAVEN</p><h2>A little haven for every coffee mood.</h2><p>Whether you need a quiet study break, a catch-up with friends, or simply a warm cup for a rainy afternoon, Brew Haven is made to feel easy, welcoming, and cozy.</p><a class="outline-btn" href="#contact">Come Say Hello →</a></div>
+</section>
+
+<section class="contact" id="contact">
+  <div><p class="kicker">STAY IN THE LOOP</p><h2>Let’s keep the good brews coming.</h2><p>Join the Brew Haven community for seasonal drinks and café updates.</p></div>
+  <button class="light-btn" id="openRegister">Create an Account</button>
+</section>
+</main>
+
+<footer><span>© 2026 Brew Haven</span><span>Warm sips. Cozy days.</span></footer>
+
+<div class="modal" id="modal" aria-hidden="true">
+  <div class="backdrop" id="backdrop"></div>
+  <div class="auth">
+    <button class="close" id="close">×</button>
+    <img src="./brew_haven_logo_uploaded.png" alt="Brew Haven" class="auth-logo">
+    <div class="tabs"><button class="tab active" data-mode="login">Login</button><button class="tab" data-mode="register">Register</button></div>
+    <h2 id="authTitle">Welcome Back!</h2><p id="authSub">Log in or create an account to continue.</p>
+    <form id="authForm">
+      <label id="nameLabel" class="hidden">Full Name<input id="name" type="text" placeholder="Your name"></label>
+      <label>Email or Username<input id="email" type="email" required placeholder="Email address"></label>
+      <label>Password<input id="password" type="password" required minlength="6" placeholder="Password"></label>
+      <div class="remember"><label><input type="checkbox"> Remember me</label><span>Forgot password?</span></div>
+      <button class="auth-submit" type="submit" id="submit">Login</button>
+      <div class="or"><span></span>or<span></span></div>
+      <button type="button" class="facebook" id="facebookBtn">Continue with Facebook</button>
+      <p class="tiny">No database is connected. This is a front-end demonstration.</p>
+      <p id="error" class="error"></p>
+    </form>
+  </div>
+</div>
+<script>
+const FB='https://www.facebook.com/share/g/19chqtrvrD/?mibextid=wwXIfr';
+const modal=document.getElementById('modal'), form=document.getElementById('authForm'), nameLabel=document.getElementById('nameLabel');
+let mode='login';
+function openAuth(m='login'){mode=m;setMode(m);modal.classList.add('show');modal.setAttribute('aria-hidden','false')}
+function closeAuth(){modal.classList.remove('show');modal.setAttribute('aria-hidden','true')}
+function setMode(m){mode=m;document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active',x.dataset.mode===m));let r=m==='register';nameLabel.classList.toggle('hidden',!r);document.getElementById('name').required=r;document.getElementById('authTitle').textContent=r?'Create an Account':'Welcome Back!';document.getElementById('authSub').textContent=r?'Register to continue to the Brew Haven community.':'Log in or create an account to continue.';document.getElementById('submit').textContent=r?'Register':'Login';document.getElementById('error').textContent=''}
+document.getElementById('openLogin').onclick=()=>openAuth('login');document.getElementById('openRegister').onclick=()=>openAuth('register');document.getElementById('close').onclick=closeAuth;document.getElementById('backdrop').onclick=closeAuth;document.querySelectorAll('.tab').forEach(x=>x.onclick=()=>setMode(x.dataset.mode));
+document.getElementById('facebookBtn').onclick=()=>location.href=FB;
+form.onsubmit=e=>{e.preventDefault();if(!form.checkValidity()){document.getElementById('error').textContent='Please complete all required fields.';return}location.href=FB};
+document.querySelectorAll('.coffee-card button').forEach(b=>b.onclick=()=>openAuth('register'));
+document.getElementById('hamburger').onclick=()=>document.getElementById('nav').classList.toggle('open');
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeAuth()});
+</script>
+</body></html>
